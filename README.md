@@ -304,4 +304,23 @@
 
 
 
+# Task 16: Numerical Integration
+**Program File:** `pylib/Task_16_numerical_integration.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Two-hour timestamps `time_hours` (`0` to `12` h) and smart-meter power readings `power_kw` (`0.8` to `1.8` kW)[cite: 23]. Computes total energy (`kWh`) via `np.trapezoid(power_kw, time_hours)` and `scipy.integrate.simpson(power_kw, x=time_hours)`, then prints their difference[cite: 23].
+* **Parameter Change & Effect (C):** Doubling every value in `power_kw` (e.g., `2 * power_kw`) doubles both `energy_trapezoid` and `energy_simpson` because numerical integration is linear in the integrand.
+* **Output & Graph Interpretation (D):** Prints the trapezoidal energy estimate (`14.200 kWh`), Simpson's rule estimate (`14.267 kWh`), and the small difference (`0.067 kWh`) between the two methods[cite: 23]. No graph is generated[cite: 23].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** A water pump discharge rate (`m^3/h`) is measured every 2 hours over a 12-hour operating window; integrating flow rate over time gives total pumped water volume (`m^3`).
+* **New Input Data:** `time_hours = np.array([0, 2, 4, 6, 8, 10, 12], dtype=float)` and `flow_m3_h = np.array([1.2, 1.5, 2.0, 2.4, 2.1, 1.6, 1.1])`.
+* **Program Output:**
+  ```text
+  Volume using trapezoidal rule: 20.600 m^3
+  Volume using Simpson's rule: 20.733 m^3
+  Difference between estimates: 0.133 m^3
+
+
+
   
