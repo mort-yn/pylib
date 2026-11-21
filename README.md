@@ -158,3 +158,24 @@
   Direct solution: [42. 36. 30. 24. 18.]
 
 
+
+# Task 9: Eigenvalues and Eigenvectors
+**Program File:** `pylib/Task_09_eigenvalues.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** $4 \times 4$ binary symmetric adjacency matrix `A` for nodes `A, B, C, D`[cite: 14, 15]. Computes eigenvalues and eigenvectors using `np.linalg.eig(A)`, normalizes the dominant eigenvector to sum to `1.0`, and verifies $\Vert{}Av - \lambda v\Vert{}_2$[cite: 14, 15].
+* **Parameter Change & Effect (C):** Connecting node `A` directly to node `D` (`A[0, 3] = 1.0`, `A[3, 0] = 1.0`)[cite: 14] makes all four nodes equally connected (degree 3), increasing the dominant eigenvalue from `2.5616` to `3.0` and equalizing all importance scores to `0.2500`.
+* **Output & Graph Interpretation (D):** Nodes `B` and `C` get higher importance (`0.3049`) than `A` and `D` (`0.1951`) due to having more connections, and the near-zero verification error confirms $Av = \lambda v$[cite: 14, 15]. No graph is generated[cite: 14, 15].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** Four interconnected microservices (`Auth`, `Gateway`, `Orders`, `Billing`) have bidirectional API links represented as an unweighted undirected adjacency matrix (`1.0` = linked, `0.0` = unlinked).
+* **New Input Data:** `nodes = ["Auth", "Gateway", "Orders", "Billing"]` and modified $4 \times 4$ adjacency matrix `A` where `Gateway` connects to all three other services.
+* **Program Output:**
+  ```text
+  Dominant eigenvalue: 2.1701
+  Eigenvector-based importance:
+  Auth: 0.2464
+  Gateway: 0.3822
+  Orders: 0.1857
+  Billing: 0.1857
+  Verification error: 6.280369834735101e-16
