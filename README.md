@@ -139,3 +139,22 @@
 
   Direct solution for first set: [5.725 4.9   5.3  ]
 
+
+# Task 8: Iterative Methods for Linear Systems
+**Program File:** `pylib/Task_08_iterative_linear.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** $5 \times 5$ diagonally dominant matrix `A`, boundary vector `b = [100., 0., 0., 0., 20.]`, `tol=1e-8`, and `max_iter=500`[cite: 12, 13]. Runs Jacobi and Gauss-Seidel iterations, tracks infinity-norm step changes, and plots convergence via `plt.semilogy()`[cite: 13, 14].
+* **Parameter Change & Effect (C):** Relaxing `tol` from `1e-8` to `1e-4`[cite: 13] reduces the number of iterations roughly by half while slightly lowering decimal accuracy in `x_j` and `x_gs`.
+* **Output & Graph Interpretation (D):** Both methods converge to `[86.67, 73.33, 60.00, 46.67, 33.33]`, matching `Direct solution`[cite: 13]. On the semi-log graph, Gauss-Seidel's curve drops nearly twice as steeply as Jacobi's because it uses newly updated neighbor values immediately[cite: 13, 14].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** Five interior nodes along a steady-state DC resistive voltage bus sit between a `48 V` left supply and a `12 V` right load, modeled with uniform neighbor conductance (`2` on diagonal, `-1` off-diagonal).
+* **New Input Data:** Same $5 \times 5$ matrix `A`, boundary vector `b = np.array([48., 0., 0., 0., 12.])`, `tol=1e-8`, `max_iter=500`.
+* **Program Output:**
+  ```text
+  Jacobi voltages: [42. 36. 30. 24. 18.]
+  Gauss-Seidel voltages: [42. 36. 30. 24. 18.]
+  Direct solution: [42. 36. 30. 24. 18.]
+
+
