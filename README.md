@@ -55,3 +55,34 @@
   x=1e-04: direct=0.499987500156, stable=0.499987500156
   x=1e-08: direct=0.499999998750, stable=0.500000000000
   x=1e-12: direct=0.500044450291, stable=0.500000000000
+
+
+  ## Task 5: Matrix Algebra and Matrix Operations
+**Program File:** `code/Task_05_matrix_algebra.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Four 2D corner points `[0, 0]`, `[1, 0]`, `[1, 1]`, `[0, 1]`, a `45°` rotation angle, and scaling factors `2.0` and `1.5`[cite: 8]. Combines `transformation = rotation @ scale`, transforms points via `points @ transformation.T`, and computes `np.linalg.det(transformation)`[cite: 8, 9].
+* **Parameter Change & Effect (C):** Changing `scale` from `[2.0, 1.5]` to `[1.0, 1.0]` removes non-uniform stretching so the points only rotate by `45°` and the determinant becomes `1.0` (area is preserved).
+* **Output & Graph Interpretation (D):** Displays the original coordinates, combined transformation matrix, transformed coordinates, and determinant (`3.0`), showing an invertible linear map that scales area by a factor of `3.0`[cite: 8, 9]. No graph is generated[cite: 9].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** Four 2D boundary markers on a field plot (`[0, 0]`, `[1, 0]`, `[1, 1]`, `[0, 1]` in scaled plot units) are rotated by `30°` and scaled by `1.5` along x and `2.0` along y in a 2D map coordinate system. Transformations are assumed linear with no translation offset.
+* **New Input Data:** `points` (4 corners), `angle = np.deg2rad(30)`, `scale = np.array([[1.5, 0.0], [0.0, 2.0]])`.
+* **Program Output:**
+  ```text
+  Original points:
+   [[0. 0.]
+   [1. 0.]
+   [1. 1.]
+   [0. 1.]]
+  Transformation matrix:
+   [[ 1.29903811 -1.        ]
+   [ 0.75        1.73205081]]
+  Transformed points:
+   [[ 0.          0.        ]
+   [ 1.29903811  0.75      ]
+   [ 0.29903811  2.48205081]
+   [-1.          1.73205081]]
+  Determinant: 3.0
+
+  
