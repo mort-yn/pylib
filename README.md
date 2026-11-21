@@ -244,4 +244,21 @@
 
 
 
-  
+# Task 13: Interpolation
+**Program File:** `pylib/Task_13_interpolation.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Hourly timestamps `hours` (`8` to `14`) and temperatures `temperature` (`18.0` to `25.0`), evaluated every `1/6` hour (`10` minutes) and at `target_time = 10.5` (`10:30`) using `scipy.interpolate.interp1d(..., kind="linear")` and `CubicSpline`[cite: 19, 20]. Plots the raw points and both interpolated curves[cite: 20].
+* **Parameter Change & Effect (C):** Changing `target_time` from `10.5` (`10:30`) to `12.5` (`12:30`) evaluates the peak-afternoon region where the curve begins flattening, slightly shifting both linear and cubic spline estimates.
+* **Output & Graph Interpretation (D):** Prints the `10:30` temperature under linear and cubic spline interpolation[cite: 20]. The graph shows straight line segments between hourly points for `Linear` and a smooth, continuous curve across intervals for `Cubic spline`[cite: 20].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** A server/equipment monitor logs CPU temperature every hour from `08:00` to `14:00`, and estimates are needed every 10 minutes (`1/6` hour) plus at `10:30` (`10.5`) assuming smooth thermal variation between readings.
+* **New Input Data:** `hours = np.array([8, 9, 10, 11, 12, 13, 14], dtype=float)` and `temperature = np.array([35.0, 38.5, 42.0, 44.5, 46.0, 45.2, 43.8])`, `target_time = 10.5`.
+* **Program Output:**
+  ```text
+  Linear estimate at 10:30: 43.25 C
+  Cubic estimate at 10:30: 43.33 C
+
+
+
