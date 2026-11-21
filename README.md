@@ -383,4 +383,18 @@
 
 
 
-  
+# Task 20: Random Numbers and Monte Carlo Methods
+**Program File:** `pylib/Task_20_monte_carlo.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** RNG seed `42`, `capacity = 1000.0`, `mean_demand = 850.0`, `std_demand = 120.0`, and `N = 100_000` normal samples[cite: 29]. Computes overload fraction `(demand > capacity).mean()` and plots running probability on a log-x axis (`plt.semilogx`)[cite: 29, 30].
+* **Parameter Change & Effect (C):** Increasing `mean_demand` from `850.0` to `950.0`[cite: 29] shifts the demand distribution closer to the `1000.0` capacity limit, substantially increasing the estimated overload probability and number of overload cases.
+* **Output & Graph Interpretation (D):** Prints estimated overload probability (`~10.56%`), overload count out of `100,000`, and plots the running estimate settling toward a steady value as `N` increases[cite: 29, 30].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** Daily electricity/energy demand (`kWh` or load units) on a feeder is modeled as normally distributed with mean `780.0` and standard deviation `110.0` against a feeder limit of `1000.0` across `100,000` simulated days.
+* **New Input Data:** `rng = np.random.default_rng(42)`, `capacity = 1000.0`, `mean_demand = 780.0`, `std_demand = 110.0`, `N = 100_000`.
+* **Program Output:**
+  ```text
+  Estimated overload probability: 2.2750%
+  Number of overload cases: 2275 out of 100000
