@@ -219,4 +219,25 @@
 
 
 
-  
+# Task 12: Polynomial and Nonlinear Equation Solving
+**Program File:** `pylib/Task_12_nonlinear_equations.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Nonlinear system `x^2 + y^2 - 4 = 0` and `y - (x^2 - 1) = 0` with initial guesses `[1.0, 1.0]` and `[-1.0, 1.0]`[cite: 18, 19]. Solves for `(x, y)` using `scipy.optimize.root(equations, guess)` and evaluates residuals[cite: 18, 19].
+* **Parameter Change & Effect (C):** Changing the circle radius squared from `4` (`r = 2`) to `9` (`r = 3`) moves the intersection points further outward from the origin while keeping symmetric `(x, y)` pairs where both curves cross.
+* **Output & Graph Interpretation (D):** Prints each initial guess, solved `(x, y)` intersection coordinates, residuals near `[0.0, 0.0]`, and `Converged: True`[cite: 19]. No graph is generated[cite: 19].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** Two 2D geometric/sensor range contours—a circle of radius `3` (`x^2 + y^2 = 9`) and a parabolic path `y = x^2 - 2`—intersect in a 2D plane; symmetric guesses locate intersections on opposite sides of the y-axis.
+* **New Input Data:** Equations `x**2 + y**2 - 9.0` and `y - (x**2 - 2.0)`, with initial guesses `[1.5, 1.5]` and `[-1.5, 1.5]`.
+* **Program Output:**
+  ```text
+  Initial guess: [1.5, 1.5]
+  Intersection: [1.61803399 0.61803399]
+  Residuals: [0.0, 0.0]
+  Converged: True
+
+  Initial guess: [-1.5, 1.5]
+  Intersection: [-1.61803399  0.61803399]
+  Residuals: [0.0, 0.0]
+  Converged: True
