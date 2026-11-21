@@ -262,3 +262,22 @@
 
 
 
+# Task 14: Curve Fitting and Approximation
+**Program File:** `pylib/Task_14_curve_fitting.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Concurrent user counts `users` (`50` to `350`), measured response times `response_ms` (`82` to `305`), and quadratic model `a * x**2 + b * x + c` fitted via `scipy.optimize.curve_fit`, computing RMSE and predicting at `400` users[cite: 20, 21]. Plots measured scatter points and the fitted curve[cite: 21].
+* **Parameter Change & Effect (C):** Changing the prediction target from `400` users to `450` users extrapolates further along the fitted quadratic curve, yielding a higher predicted response time because delay grows with `x` and `x^2`[cite: 21].
+* **Output & Graph Interpretation (D):** Prints the fitted quadratic equation, RMSE (`~2.0 ms`), and predicted latency at `400` users[cite: 21]. The graph shows the smooth quadratic curve closely tracking the measured points across the load range[cite: 21].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** A batch processing job's execution time (in seconds) is measured across different data batch sizes (in MB), modeled as a smooth quadratic trend with no sudden step jumps.
+* **New Input Data:** `batch_mb = np.array([50, 100, 150, 200, 250, 300, 350], dtype=float)` and `runtime_s = np.array([12.0, 14.5, 18.0, 22.5, 28.0, 34.5, 42.0], dtype=float)`, predicting at `400` MB.
+* **Program Output:**
+  ```text
+  Fitted model: y = 0.000200x^2 + 0.0200x + 10.50
+  RMSE: 0.00 s
+  Predicted runtime at 400 MB: 50.50 s
+
+
+
