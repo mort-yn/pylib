@@ -323,4 +323,22 @@
 
 
 
-  
+# Task 17: Ordinary Differential Equations - Euler Method
+**Program File:** `pylib/Task_17_euler_ode.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Cooling parameters `T_ambient = 25.0`, `T_initial = 90.0`, `k = 0.12`, step `h = 1.0` min, and `end_time = 30.0` min[cite: 24]. Steps `T[i+1] = T[i] + h * (-k * (T[i] - T_ambient))`, compares against the exact exponential solution, prints final error, and plots both curves[cite: 24, 25].
+* **Parameter Change & Effect (C):** Halving the step size `h` from `1.0` to `0.5` minutes doubles the number of steps and reduces the final Euler error against the exact solution because first-order Euler error decreases roughly linearly with `h`.
+* **Output & Graph Interpretation (D):** Prints Euler temperature (`~26.44 °C`), exact temperature (`~26.78 °C`), and final absolute error (`~0.34 °C`) after 30 minutes[cite: 24, 25]. The graph shows the Euler approximation decaying slightly slower than the smooth exact curve[cite: 24, 25].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** A warm beverage/liquid sample cools toward a room temperature of `22.0 °C` starting at `80.0 °C` with decay rate `k = 0.10` per minute over `30` minutes using step size `h = 1.0` minute.
+* **New Input Data:** `T_ambient = 22.0`, `T_initial = 80.0`, `k = 0.10`, `h = 1.0`, `end_time = 30.0`.
+* **Program Output:**
+  ```text
+  Euler temperature after 30 min: 24.46 C
+  Exact temperature after 30 min: 24.89 C
+  Final absolute error: 0.4274 C
+
+
+
