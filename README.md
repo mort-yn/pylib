@@ -342,3 +342,19 @@
 
 
 
+# Task 18: Numerical Solution of ODEs Using SciPy
+**Program File:** `pylib/Task_18_scipy_ode.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** RC circuit parameters `Vs = 5.0` V, `R = 1000.0` ohms, `C = 0.001` farads, initial voltage `V0 = 0.0` V, evaluation times `t_eval` (`0` to `5` s, `200` points), and tolerances `rtol=1e-9, atol=1e-11`[cite: 25, 26]. Solves `dV/dt = (Vs - V) / (R * C)` with `scipy.integrate.solve_ivp`, compares against the exact charging curve, prints maximum error, and plots both curves[cite: 25, 26].
+* **Parameter Change & Effect (C):** Increasing `R` from `1000.0` ohms to `2000.0` ohms doubles the time constant $\tau = RC$ (from `1.0` s to `2.0` s), so the capacitor charges more slowly and reaches a lower voltage at `t = 5` s.
+* **Output & Graph Interpretation (D):** Prints `Solver success: True`, voltage at `5` s (`~4.9663` V), and maximum error near `10^-11` V against the exact solution[cite: 26]. On the graph, the `solve_ivp` curve and dashed `Exact` curve overlap closely as voltage rises smoothly toward `5` V[cite: 26].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** A capacitor charges through a `12.0` V DC supply across a `500.0` ohm resistor and `0.002` farad capacitor ($\tau = 1.0$ s) starting from `0.0` V over `0` to `5` seconds, with ideal components and no parasitic leakage.
+* **New Input Data:** `Vs = 12.0`, `R = 500.0`, `C = 0.002`, `V0 = 0.0`, `t_eval = np.linspace(0, 5, 200)`, `rtol=1e-9`, `atol=1e-11`.
+* **Program Output:**
+  ```text
+  Solver success: True
+  Capacitor voltage at 5 s: 11.9191 V
+  Maximum error against exact solution: 2.309e-11 V
