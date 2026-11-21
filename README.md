@@ -358,3 +358,29 @@
   Solver success: True
   Capacitor voltage at 5 s: 11.9191 V
   Maximum error against exact solution: 2.309e-11 V
+
+
+
+# Task 19: Numerical Optimization
+**Program File:** `pylib/Task_19_optimization.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Objective cost `12*x + 18*y`, capacity constraint `100*x + 170*y - 1000 >= 0`, bounds `(0, None)` for `x` and `y`, initial guess `x0=[5, 3]`, and integer search over `0..19`[cite: 27, 28]. Minimizes cost via `scipy.optimize.minimize(..., method="SLSQP")` and checks integer server counts[cite: 27, 28].
+* **Parameter Change & Effect (C):** Raising the minimum required capacity from `1000` to `1500` increases both the continuous SLSQP allocation and the best integer cost because more total capacity must be provisioned.
+* **Output & Graph Interpretation (D):** Prints optimization success, continuous `x` and `y` allocations, total capacity (`>= 1000`), minimum continuous planning cost, and the best integer `(cost, a, b, capacity)` tuple[cite: 28]. No graph is generated[cite: 27, 28].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** A cloud team selects two worker pool tiers (`x` and `y`) with unit costs `15` and `22`, capacities `120` and `200`, and a minimum required capacity of `1200` with non-negative allocations.
+* **New Input Data:** Objective `15*x + 22*y`, constraint `120*x + 200*y - 1200 >= 0`, bounds `[(0, None), (0, None)]`, starting guess `x0=[5, 3]`, integer search range `0..20`.
+* **Program Output:**
+  ```text
+  Optimization success: True
+  Type A allocation: 10.000
+  Type B allocation: 0.000
+  Total capacity: 1200.00
+  Minimum planning cost: 150.00
+  Best nearby integer solution: (150, 10, 0, 1200)
+
+
+
+  
