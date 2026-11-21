@@ -179,3 +179,22 @@
   Orders: 0.1857
   Billing: 0.1857
   Verification error: 6.280369834735101e-16
+
+
+
+ # Task 10: Root Finding: Bisection and Fixed-Point Methods
+**Program File:** `pylib/Task_10_bisection_fixed_point.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Heat-balance function `heat_balance(T) = T - 25 - 10 * exp(-T / 20)` over bracket `[20, 40]`, tolerance `xtol=1e-10`, fixed-point iteration `g(T) = 25 + 10 * exp(-T / 20)` starting at `T = 30.0` (up to `100` steps), and plotting `heat_balance(temps)` across `20` to `40`[cite: 15, 16]. Uses `scipy.optimize.root_scalar(..., method="bisect")` and fixed-point updates[cite: 15, 16].
+* **Parameter Change & Effect (C):** Changing the initial guess `T` in fixed-point iteration from `30.0` to `20.0`[cite: 16] changes the step-by-step trajectory and iteration count slightly, but converges to the exact same equilibrium root because `g'(T)` is contractive near the solution.
+* **Output & Graph Interpretation (D):** Prints the bisection root, fixed-point equilibrium value, and iteration count, matching to six decimal places[cite: 16]. The plot shows the curve crossing zero (`y = 0`) at the dashed vertical line marking the equilibrium temperature[cite: 16].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** A water-tank thermal model balances heat gain and heat loss around an equilibrium temperature `T` (°C), with a constant ambient offset and exponential loss term over `[15, 35]`.
+* **New Input Data:** `def heat_balance(T): return T - 20 - 8 * np.exp(-T / 18)`, bracket `[15, 35]`, `xtol=1e-10`, `g(T) = 20 + 8 * np.exp(-T / 18)`, starting guess `T = 25.0`.
+* **Program Output:**
+  ```text
+  Bisection equilibrium temperature: 21.855143 C
+  Fixed-point equilibrium temperature: 21.855143 C
+  Fixed-point iterations: 6
