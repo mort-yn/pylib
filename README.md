@@ -1,5 +1,5 @@
-## Task 2: NumPy Arrays and Numerical Computation
-**Program File:** `code/Task_02_numpy_arrays.py`
+# Task 2: NumPy Arrays and Numerical Computation
+**Program File:** `pylib/Task_02_numpy_arrays.py`
 
 ### 1. Original Task Analysis (Parts B, C & D)
 * **Inputs & Operations (B):** A 1D NumPy array `temperatures_c` of 24 hourly temperatures in Celsius[cite: 4, 5]. It computes `np.mean()`, `np.min()`, and `np.max()`, and converts all readings to Fahrenheit using the vectorized formula $F = 1.8C + 32$[cite: 4, 5].
@@ -16,8 +16,10 @@
   Maximum humidity: 61.50 %
   First six humidity fractions: [0.52  0.545 0.56  0.582 0.601 0.615]
 
-  ## Task 3: Mathematical Functions and Vectorization
-**Program File:** `code/Task_03_vectorization.py`
+
+
+# Task 3: Mathematical Functions and Vectorization
+**Program File:** `pylib/Task_03_vectorization.py`
 
 ### 1. Original Task Analysis (Parts B, C & D)
 * **Inputs & Operations (B):** Seed `42` and `1,000,000` uniform latency values (`5` to `250` ms) in `latency_ms`[cite: 6]. Both `loop_version()` and `vectorized_version()` divide by `1000.0` and square (`** 2`), benchmarked with `timeit.timeit()`[cite: 6].
@@ -34,8 +36,10 @@
   Vectorized time: 0.0021 s
   Approximate speed-up: 115.0x
 
-  ## Task 4: Floating-Point Arithmetic and Numerical Errors
-**Program File:** `code/Task_04_numerical_errors.py`
+
+
+# Task 4: Floating-Point Arithmetic and Numerical Errors
+**Program File:** `pylib/Task_04_numerical_errors.py`
 
 ### 1. Original Task Analysis (Parts B, C & D)
 * **Inputs & Operations (B):** Compares `0.1 + 0.2` against `0.3` using `==` and `np.isclose()`, computes absolute and relative error for `1.414` vs. `np.sqrt(2)`, and compares `(np.sqrt(1 + x) - 1) / x` with `1 / (np.sqrt(1 + x) + 1)` across `x` in `[1e-4, 1e-8, 1e-12]`[cite: 6, 7].
@@ -57,8 +61,9 @@
   x=1e-12: direct=0.500044450291, stable=0.500000000000
 
 
-  ## Task 5: Matrix Algebra and Matrix Operations
-**Program File:** `code/Task_05_matrix_algebra.py`
+
+# Task 5: Matrix Algebra and Matrix Operations
+**Program File:** `pylib/Task_05_matrix_algebra.py`
 
 ### 1. Original Task Analysis (Parts B, C & D)
 * **Inputs & Operations (B):** Four 2D corner points `[0, 0]`, `[1, 0]`, `[1, 1]`, `[0, 1]`, a `45°` rotation angle, and scaling factors `2.0` and `1.5`[cite: 8]. Combines `transformation = rotation @ scale`, transforms points via `points @ transformation.T`, and computes `np.linalg.det(transformation)`[cite: 8, 9].
@@ -85,8 +90,10 @@
    [-1.          1.73205081]]
   Determinant: 3.0
 
-  ## Task 6: Solution of Systems of Linear Equations
-**Program File:** `code/Task_06_linear_systems.py`
+
+
+# Task 6: Solution of Systems of Linear Equations
+**Program File:** `pylib/Task_06_linear_systems.py`
 
 ### 1. Original Task Analysis (Parts B, C & D)
 * **Inputs & Operations (B):** Coefficient matrix `A = [[4.0, 2.0], [8.0, 12.0]]` (CPU and memory per server type) and right-hand vector `b = [20.0, 72.0]` (total observed usage)[cite: 9]. Solves $Ax = b$ using `np.linalg.solve(A, b)` and checks the residual $r = b - Ax$ and Euclidean norm $\Vert{}r\Vert{}_2$[cite: 9, 10].
@@ -103,3 +110,32 @@
   Verification A @ solution: [ 31. 660.]
   Residual: [0. 0.]
   Residual norm: 0.0
+
+
+# Task 7: Gaussian Elimination and LU Decomposition
+**Program File:** `pylib/Task_07_gaussian_lu.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Fixed $3 \times 3$ coefficient matrix `A` and three right-hand `measurement_sets` vectors `b`[cite: 11]. Factors $PA = LU$ once using `scipy.linalg.lu_factor(A)`, then solves all three systems using `lu_solve((lu, piv), b)` and verifies the residual norm[cite: 11, 12].
+* **Parameter Change & Effect (C):** Changing the diagonal entries of `A` from `[4.0, 4.0, 3.0]` to `[5.0, 5.0, 4.0]`[cite: 11] reduces the magnitude of every element in the solution vector `x` because larger diagonal weights require smaller variable values for the same `b` vectors.
+* **Output & Graph Interpretation (D):** Prints the 3-element solution vector and a residual norm near `10^-15` for each measurement set, and confirms `lu_solve` matches `np.linalg.solve` directly[cite: 12]. No graph is generated[cite: 11, 12].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** A manufacturing line reuses the same 3-station machine coupling matrix `A` across three daily shifts while target demand vectors `b` vary per shift; system parameters are assumed linear and constant across shifts.
+* **New Input Data:** `A` (same $3 \times 3$ matrix) and three shift demand vectors `[18.0, 12.0, 11.0]`, `[20.0, 15.0, 10.0]`, and `[14.0, 10.0, 9.0]`.
+* **Program Output:**
+  ```text
+  Measurement set 1
+  Solution: [5.725 4.9   5.3  ]
+  Residual norm: 0.0
+
+  Measurement set 2
+  Solution: [6.575 6.3   5.43333333]
+  Residual norm: 1.7763568394002505e-15
+
+  Measurement set 3
+  Solution: [4.625 4.5   4.5  ]
+  Residual norm: 0.0
+
+  Direct solution for first set: [5.725 4.9   5.3  ]
+
