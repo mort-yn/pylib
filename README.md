@@ -198,3 +198,25 @@
   Bisection equilibrium temperature: 21.855143 C
   Fixed-point equilibrium temperature: 21.855143 C
   Fixed-point iterations: 6
+
+
+# Task 11: Root Finding: Newton-Raphson and Secant Methods
+**Program File:** `pylib/Task_11_newton_secant.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Cash flow list `cash_flows = [-10000, 3000, 3500, 4000, 2500]`, `npv(rate)` function, analytical derivative `d_npv(rate)`, initial guess `x0=0.10` for Newton's method, secant starting points `x0=0.05, x1=0.20`, and tolerance `xtol=1e-12`[cite: 17, 18]. Solves for the discount rate where `NPV(rate) = 0` via `scipy.optimize.root_scalar` using `"newton"` and `"secant"`[cite: 17, 18].
+* **Parameter Change & Effect (C):** Increasing the final cash inflow (`cash_flows[4]`) from `2500` to `4000`[cite: 17] increases the internal rate of return (IRR) because total positive cash inflows are higher for the same `-10000` initial outlay.
+* **Output & Graph Interpretation (D):** Prints the IRR from Newton-Raphson and the Secant method along with `NPV(newton.root)` near `0.0`[cite: 17, 18]. No graph is generated[cite: 17, 18].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** A small project requires an initial capital outlay followed by four annual net cash inflows; cash flows occur at exact annual intervals and the discount rate is constant across periods.
+* **New Input Data:** `cash_flows = [-12000, 3500, 4000, 4200, 3000]`, Newton starting guess `x0=0.10`, secant points `x0=0.05, x1=0.20`, `xtol=1e-12`.
+* **Program Output:**
+  ```text
+  IRR using Newton-Raphson: 7.454784%
+  IRR using Secant method: 7.454784%
+  NPV at Newton solution: -0.000000
+
+
+
+  

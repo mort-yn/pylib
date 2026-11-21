@@ -1,20 +1,16 @@
 from scipy.optimize import root_scalar
 
-# Initial investment followed by annual cash inflows​
-cash_flows = [-10000, 3000, 3500, 4000, 2500]
+# Initial investment followed by annual cash inflows
+cash_flows = [-12000, 3500, 4000, 4200, 3000]
+
 
 def npv(rate):
-    return sum(
-        cf / (1 + rate)**t
-        for t, cf in enumerate(cash_flows)
-    )
+    return sum(cf / (1 + rate) ** t for t, cf in enumerate(cash_flows))
+
 
 def d_npv(rate):
-    return sum(
-        -t * cf / (1 + rate)**(t + 1)
-        for t, cf in enumerate(cash_flows)
-        if t > 0
-    )
+    return sum(-t * cf / (1 + rate) ** (t + 1) for t, cf in enumerate(cash_flows) if t > 0)
+
 
 newton = root_scalar(
     npv,
@@ -34,4 +30,4 @@ secant = root_scalar(
 
 print(f"IRR using Newton-Raphson: {newton.root:.6%}")
 print(f"IRR using Secant method: {secant.root:.6%}")
-print(f"NPV at Newton solution:{npv(newton.root):.6f}")
+print(f"NPV at Newton solution: {npv(newton.root):.6f}")
