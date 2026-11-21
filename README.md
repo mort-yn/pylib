@@ -281,3 +281,27 @@
 
 
 
+# Task 15: Numerical Differentiation
+**Program File:** `pylib/Task_15_numerical_differentiation.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Sample times `time` (`0` to `6` s) and positions `position` (`0.0` to `38.0` m)[cite: 21, 22]. Approximates speed using forward difference at `t = 0`, central differences `(x[i+1] - x[i-1]) / (t[i+1] - t[i-1])` for interior points, and backward difference at `t = 6`, then plots speed vs. time[cite: 21, 22].
+* **Parameter Change & Effect (C):** Changing `position[-1]` from `38.0` to `42.0` increases the estimated speed at `t = 6 s` (and slightly affects `t = 5 s` via the central difference) because displacement over the final interval is larger.
+* **Output & Graph Interpretation (D):** Prints each timestamp, position, and estimated speed (`m/s`), showing speed increasing from `4.80 m/s` to `8.00 m/s`[cite: 22]. The plot shows a rising speed trend with marker points at each sampled second[cite: 22].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** A water-flow/liquid-level sensor records cumulative volume (litres) every second from `0` to `6` s, and numerical differentiation estimates instantaneous flow rate (`L/s`) between discrete samples.
+* **New Input Data:** `time = np.array([0, 1, 2, 3, 4, 5, 6], dtype=float)` and `volume_l = np.array([0.0, 2.5, 5.4, 8.7, 12.4, 16.5, 21.0])`.
+* **Program Output:**
+  ```text
+  t=0s, volume=0.0L, estimated flow=2.50 L/s
+  t=1s, volume=2.5L, estimated flow=2.70 L/s
+  t=2s, volume=5.4L, estimated flow=3.10 L/s
+  t=3s, volume=8.7L, estimated flow=3.50 L/s
+  t=4s, volume=12.4L, estimated flow=3.90 L/s
+  t=5s, volume=16.5L, estimated flow=4.30 L/s
+  t=6s, volume=21.0L, estimated flow=4.50 L/s
+
+
+
+  
