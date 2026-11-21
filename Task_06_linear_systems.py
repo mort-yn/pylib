@@ -1,24 +1,21 @@
 import numpy as np
 
-# x = number of Type A servers​
-# y = number of Type B servers​
-#​
-# Type A uses 4 CPU units and 8 GB memory​
-# Type B uses 2 CPU units and 12 GB memory​
-# Total observed usage: 20 CPU units and 72 GB memory​
-
+# x = number of Worker containers
+# y = number of Database containers
+# Worker uses 3 Gbps bandwidth and 50 GB storage
+# Database uses 5 Gbps bandwidth and 120 GB storage
+# Total observed usage: 31 Gbps bandwidth and 660 GB storage
 A = np.array([
-    [4.0, 2.0],
-    [8.0, 12.0]
+    [3.0, 5.0],
+    [50.0, 120.0]
 ])
-
-b = np.array([20.0, 72.0])
+b = np.array([31.0, 660.0])
 
 solution = np.linalg.solve(A, b)
 residual = b - A @ solution
 
-print(f"Type A servers: {solution[0]:.0f}")
-print(f"Type B servers: {solution[1]:.0f}")
+print(f"Worker containers: {solution[0]:.0f}")
+print(f"Database containers: {solution[1]:.0f}")
 print("Verification A @ solution:", A @ solution)
 print("Residual:", residual)
 print("Residual norm:", np.linalg.norm(residual))

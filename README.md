@@ -85,4 +85,21 @@
    [-1.          1.73205081]]
   Determinant: 3.0
 
-  
+  ## Task 6: Solution of Systems of Linear Equations
+**Program File:** `code/Task_06_linear_systems.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Coefficient matrix `A = [[4.0, 2.0], [8.0, 12.0]]` (CPU and memory per server type) and right-hand vector `b = [20.0, 72.0]` (total observed usage)[cite: 9]. Solves $Ax = b$ using `np.linalg.solve(A, b)` and checks the residual $r = b - Ax$ and Euclidean norm $\Vert{}r\Vert{}_2$[cite: 9, 10].
+* **Parameter Change & Effect (C):** Changing total usage `b` from `[20.0, 72.0]` to `[24.0, 80.0]`[cite: 9] shifts the solution from `(3, 4)` to `(4, 4)` (4 Type A servers and 4 Type B servers) while keeping the residual norm near `0`.
+* **Output & Graph Interpretation (D):** Prints `Type A servers: 3` and `Type B servers: 4`, verifies `A @ solution` equals `[20., 72.]`, and shows a near-zero residual norm confirming exact accuracy[cite: 9, 10]. No graph is generated[cite: 9, 10].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** A network team allocates two container profiles (Worker and Database) that consume fixed bandwidth (Gbps) and SSD storage (GB), assuming exact resource totals with no idle overhead.
+* **New Input Data:** `A = np.array([[3.0, 5.0], [50.0, 120.0]])` and `b = np.array([31.0, 660.0])`.
+* **Program Output:**
+  ```text
+  Worker containers: 2
+  Database containers: 5
+  Verification A @ solution: [ 31. 660.]
+  Residual: [0. 0.]
+  Residual norm: 0.0
