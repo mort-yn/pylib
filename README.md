@@ -241,3 +241,7 @@
   Intersection: [-1.61803399  0.61803399]
   Residuals: [0.0, 0.0]
   Converged: True
+
+
+
+  
