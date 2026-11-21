@@ -1,20 +1,20 @@
 import numpy as np
 from scipy.linalg import lu_factor, lu_solve
 
-# The same coefficient matrix is reused for several measurement vectors.​
+# The same coefficient matrix is reused for three shift demand vectors.
 A = np.array([
-    [4.0, -1.0, 0.0],
+    [4.0, -1.0,  0.0],
     [-1.0, 4.0, -1.0],
-    [0.0, -1.0, 3.0]
+    [0.0, -1.0,  3.0]
 ])
 
 measurement_sets = [
-    np.array([15.0, 10.0, 10.0]),
-    np.array([16.0, 11.0, 9.0]),
-    np.array([14.0, 12.0, 11.0])
+    np.array([18.0, 12.0, 11.0]),
+    np.array([20.0, 15.0, 10.0]),
+    np.array([14.0, 10.0,  9.0])
 ]
 
-# Factor A only once​
+# Factor A only once
 lu, piv = lu_factor(A)
 
 for i, b in enumerate(measurement_sets, start=1):
@@ -25,6 +25,5 @@ for i, b in enumerate(measurement_sets, start=1):
     print("Residual norm:", np.linalg.norm(residual))
     print()
 
-# Direct solution for comparison​
-print("Direct solution for first set:",
-    np.linalg.solve(A, measurement_sets[0]))
+# Direct solution for comparison
+print("Direct solution for first set:", np.linalg.solve(A, measurement_sets[0]))
