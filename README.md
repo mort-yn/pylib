@@ -33,3 +33,25 @@
   Loop time: 0.2415 s
   Vectorized time: 0.0021 s
   Approximate speed-up: 115.0x
+
+  ## Task 4: Floating-Point Arithmetic and Numerical Errors
+**Program File:** `code/Task_04_numerical_errors.py`
+
+### 1. Original Task Analysis (Parts B, C & D)
+* **Inputs & Operations (B):** Compares `0.1 + 0.2` against `0.3` using `==` and `np.isclose()`, computes absolute and relative error for `1.414` vs. `np.sqrt(2)`, and compares `(np.sqrt(1 + x) - 1) / x` with `1 / (np.sqrt(1 + x) + 1)` across `x` in `[1e-4, 1e-8, 1e-12]`[cite: 6, 7].
+* **Parameter Change & Effect (C):** Changing `approx_value` from `1.414` to `1.4142` reduces both absolute error and relative error by roughly two orders of magnitude because `1.4142` is much closer to $\sqrt{2} \approx 1.41421356$.
+* **Output & Graph Interpretation (D):** Shows why binary floating point fails exact equality for `0.1 + 0.2 == 0.3`, quantifies approximation error for $\sqrt{2}$, and shows `(np.sqrt(1 + x) - 1) / x` losing accuracy for small `x` while `1 / (np.sqrt(1 + x) + 1)` stays accurate near `0.5`[cite: 7]. No graph is generated[cite: 7].
+
+### 2. Modified Real-World Case (Part E)
+* **New Scenario & Assumptions:** A billing/accounting script checks decimal currency addition (`0.1 + 0.2` vs `0.3` currency units), evaluates a rounded constant $\pi \approx 3.1416$ against `np.pi`, and tests a small rate/perturbation formula across `[1e-4, 1e-8, 1e-12]`.
+* **New Input Data:** `calculated = 0.1 + 0.2`, `expected = 0.3`, `true_value = np.pi`, `approx_value = 3.1416`, and `x` values `[1e-4, 1e-8, 1e-12]`.
+* **Program Output:**
+  ```text
+  0.1 + 0.2 = 0.30000000000000004
+  Exact comparison: False
+  Tolerance-based comparison: True
+  Absolute error: 0.00000735
+  Relative error: 0.00023384%
+  x=1e-04: direct=0.499987500156, stable=0.499987500156
+  x=1e-08: direct=0.499999998750, stable=0.500000000000
+  x=1e-12: direct=0.500044450291, stable=0.500000000000
